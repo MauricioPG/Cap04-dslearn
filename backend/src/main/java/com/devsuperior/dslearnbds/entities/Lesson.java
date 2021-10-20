@@ -1,7 +1,9 @@
 package com.devsuperior.dslearnbds.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Entity;
@@ -14,11 +16,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-
-// Abstract nao instancia e obriga a heranca para instanciação
-// Inheritance - joined cria as tres tabelas, uma para cada classe
+//Abstract nao instancia e obriga a heranca para instanciação
+//Inheritance - joined cria as tres tabelas, uma para cada classe
 
 @Entity
 @Table(name = "tb_lesson")
@@ -35,6 +37,9 @@ public abstract class Lesson implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "section_id")
 	private Section section;
+	
+	@OneToMany(mappedBy = "lesson")
+	private List<Deliver> deliveries = new ArrayList<>();
 	
 	@ManyToMany
 	@JoinTable(name = "tb_lessons_done",
@@ -93,6 +98,10 @@ public abstract class Lesson implements Serializable {
 		return enrollmentsDone;
 	}
 
+	public List<Deliver> getDeliveries() {
+		return deliveries;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -118,4 +127,5 @@ public abstract class Lesson implements Serializable {
 		return true;
 	}
 }
+
 

@@ -23,7 +23,7 @@ public class Course implements Serializable {
 	private String imgUri;
 	private String imgGrayUri;
 	
-	@OneToMany (mappedBy = "course")
+	@OneToMany(mappedBy = "course")
 	private List<Offer> offers = new ArrayList<>();
 	
 	public Course() {
@@ -98,3 +98,4 @@ public class Course implements Serializable {
 		return true;
 	}
 }
+

@@ -32,9 +32,9 @@ public class Resource implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "offer_id")
 	private Offer offer;
-	
+
 	@OneToMany(mappedBy = "resource")
-	List<Section> sections = new ArrayList<>();
+	private List<Section> sections = new ArrayList<>();
 	
 	public Resource() {
 	}
@@ -107,10 +107,6 @@ public class Resource implements Serializable {
 		this.offer = offer;
 	}
 
-	public List<Section> getSections() {
-		return sections;
-	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -136,4 +132,3 @@ public class Resource implements Serializable {
 		return true;
 	}
 }
-
